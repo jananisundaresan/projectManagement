@@ -1,0 +1,11 @@
+
+<div *ngIf="loggedIn">
+  <p-menubar [model]="items">
+
+    <div>
+<a class="myAccount" [routerLink]="['userProfile']">{{fullName}}</a>
+      <button pButton (click) = "logout()" type="button" label="Logout"></button>
+    </div>
+  </p-menubar>
+</div>
+

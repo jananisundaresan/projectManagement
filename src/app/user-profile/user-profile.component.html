@@ -1,0 +1,71 @@
+<div class="login-wrap">
+  <div class="login-html">
+    <input id="tab-1" type="radio" name="tab" class="sign-up" checked><label for="tab-1" class="tab">USER
+    PROFILE</label>
+
+    <div class="login-form">
+
+      <div class="sign-up-htm">
+        <div class="group ui-grid-row">
+          <div class="ui-grid-col-4" style="padding: 20px;">
+            <label class="label">Username</label></div>
+          <div class="ui-grid-col-6">
+            <input pInputText class="input" type="text" [(ngModel)]="userName" placeholder="Required" disabled/>
+            <div class="ui-grid-col-6">
+              <!--   <p-message severity="error" text="Username is required" *ngIf="!userform.controls['username'].valid&&userform.controls['username'].dirty"></p-message>-->
+            </div>
+          </div>
+        </div>
+        <form *ngIf="currentUserInfo" [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
+          <div class="group ui-grid-row">
+            <div class="ui-grid-col-4" style="padding: 20px;">
+              <label class="label">First Name</label></div>
+            <div class="ui-grid-col-6">
+              <input pInputText class="input" type="text" formControlName="name" placeholder="Required"/></div>
+            <div class="ui-grid-col-6">
+              <p-message severity="error" text="Firstname is required"
+                         *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty"></p-message>
+            </div>
+          </div>
+
+          <div class="group ui-grid-row">
+            <div class="ui-grid-col-4" style="padding: 20px;">
+              <label class="label">Last Name</label></div>
+            <div class="ui-grid-col-6">
+              <input pInputText class="input" type="text" formControlName="family_name" placeholder="Required"/></div>
+            <div class="ui-grid-col-6">
+              <p-message severity="error" text="Lastname is required"
+                         *ngIf="!userform.controls['family_name'].valid&&userform.controls['family_name'].dirty"></p-message>
+            </div>
+          </div>
+          <div class="group ui-grid-row">
+            <div class="ui-grid-col-4" style="padding: 20px;">
+              <label class="label">Email</label></div>
+            <div class="ui-grid-col-6">
+              <input pInputText class="input" type="email" formControlName="email" placeholder="Required" disabled/>
+            </div>
+            <div class="ui-grid-col-6">
+              <!--          <p-message severity="error" text="Email is required" *ngIf="!userform.controls['email'].valid&&userform.controls['email'].dirty"></p-message>
+             -->         </div>
+          </div>
+          <div class="group">
+            <button pButton type="submit" class="button" label="Submit"
+                    [disabled]="!userform.valid || !userform.dirty ">Update
+            </button>
+            <div class="foot-lnk">
+              <br>
+              <p-message severity="error" text="{{message}}"
+                         *ngIf="message"></p-message>
+            </div>
+
+
+            <br>
+          </div>
+        </form>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

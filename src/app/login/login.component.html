@@ -1,0 +1,113 @@
+<div class="login-wrap">
+  <div class="login-html">
+    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+    <div class="login-form">
+      <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+      <div class="sign-in-htm">
+        <div class="group ui-grid-row">
+          <div class="ui-grid-col-4" style="padding: 20px;">
+            <label class="label">Username</label></div>
+          <div class="ui-grid-col-6">
+            <input pInputText class="input" type="text" formControlName="username" placeholder="Required"/>
+            <div class="ui-grid-col-6">
+              <p-message severity="error" text="Username is required" *ngIf="!loginForm.controls['username'].valid&&loginForm.controls['username'].dirty"></p-message>
+            </div>
+          </div>
+        </div>
+        <div class="group ui-grid-row">
+          <div class="ui-grid-col-4" style="padding: 20px;">
+            <label class="label">Password</label></div>
+          <div class="ui-grid-col-6">
+            <input pInputText class="input" type="password" formControlName="password" placeholder="Required - Min(8)"/></div>
+          <div class="ui-grid-col-6">
+            <p-message severity="error" [text]="loginForm.controls['password'].errors['required'] ? 'Password is required' : loginForm.controls['password'].errors['minlength'] ? 'Must be longer than 8 characters' : ''"
+                       *ngIf="!loginForm.controls['password'].valid&&loginForm.controls['password'].dirty"></p-message>
+          </div>
+        </div>
+        <div class="group ui-grid-row">
+          <button pButton type="submit" class="button" label="Submit" [disabled]="!loginForm.valid">Sign In</button>
+          <div class="foot-lnk">
+            <br>
+            <p-message severity="error" text="{{loginError}}"
+                       *ngIf="loginError"></p-message>
+            <br>
+            <a *ngIf="verifiedUser" (click)="verifyCode(loginForm.value)" style="color: antiquewhite;text-decoration: underline;">Verfiy your registration</a>
+          </div>
+
+        </div>
+        <br>
+        <div class="foot-lnk">
+          <a style="text-align: center;color: #ffffff;text-decoration: underline" routerLink="/email_password_recovery">Forgot Password?</a>
+        </div>
+      </div>
+      </form>
+      <form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
+      <div class="sign-up-htm">
+        <div class="group ui-grid-row">
+          <div class="ui-grid-col-4" style="padding: 20px;">
+            <label class="label">First Name</label></div>
+          <div class="ui-grid-col-6">
+            <input pInputText class="input" type="text" formControlName="firstname" placeholder="Required"/></div>
+          <div class="ui-grid-col-6">
+            <p-message severity="error" text="Firstname is required" *ngIf="!userform.controls['firstname'].valid&&userform.controls['firstname'].dirty"></p-message>
+          </div>
+        </div>
+
+        <div class="group ui-grid-row">
+          <div class="ui-grid-col-4" style="padding: 20px;">
+            <label class="label">Last Name</label></div>
+          <div class="ui-grid-col-6">
+            <input pInputText class="input" type="text" formControlName="lastname" placeholder="Required"/></div>
+          <div class="ui-grid-col-6">
+            <p-message severity="error" text="Lastname is required" *ngIf="!userform.controls['lastname'].valid&&userform.controls['lastname'].dirty"></p-message>
+          </div>
+        </div>
+        <div class="group ui-grid-row">
+          <div class="ui-grid-col-4" style="padding: 20px;">
+            <label class="label">Username</label></div>
+          <div class="ui-grid-col-6">
+          <input pInputText class="input" type="text" formControlName="username" placeholder="Required"/>
+            <div class="ui-grid-col-6">
+              <p-message severity="error" text="Username is required" *ngIf="!userform.controls['username'].valid&&userform.controls['username'].dirty"></p-message>
+            </div>
+          </div>
+        </div>
+        <div class="group ui-grid-row">
+          <div class="ui-grid-col-4" style="padding: 20px;">
+            <label class="label">Password</label></div>
+          <div class="ui-grid-col-6">
+            <input pInputText class="input" type="password" formControlName="password" placeholder="Required - Min(8)"/></div>
+          <div class="ui-grid-col-6">
+            <p-message severity="error" [text]="userform.controls['password'].errors['required'] ? 'Password is required' : userform.controls['password'].errors['minlength'] ? 'Must be longer than 8 characters' : ''"
+                       *ngIf="!userform.controls['password'].valid&&userform.controls['password'].dirty"></p-message>
+          </div>
+        </div>
+        <div class="group ui-grid-row">
+          <div class="ui-grid-col-4" style="padding: 20px;">
+            <label class="label">Email</label></div>
+          <div class="ui-grid-col-6">
+            <input pInputText class="input" type="email" formControlName="email" placeholder="Required"/></div>
+          <div class="ui-grid-col-6">
+            <p-message severity="error" text="Email is required" *ngIf="!userform.controls['email'].valid&&userform.controls['email'].dirty"></p-message>
+          </div>
+        </div>
+        <div class="group">
+          <button pButton type="submit" class="button" label="Submit" [disabled]="!userform.valid">SIGN UP</button>
+          <div class="foot-lnk">
+            <br>
+            <p-message severity="error" text="{{error}}"
+                       *ngIf="error"></p-message>
+          </div>
+
+
+          <br>
+          <div class="foot-lnk">
+            <label for="tab-1" style="text-align: center;color: #ffffff;text-decoration: underline">Already Member?</label>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

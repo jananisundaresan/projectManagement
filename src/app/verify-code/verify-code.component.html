@@ -1,0 +1,40 @@
+<div class="login-wrap">
+  <div class="login-html">
+    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Verify Code</label>
+    <div class="login-form">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+          <div class="group ui-grid-row">
+            <div class="ui-grid-col-4" style="padding: 20px;">
+              <label class="label">Username</label></div>
+            <div class="ui-grid-col-6">
+              <input pInputText class="input" type="text" formControlName="username" placeholder="Required"/>
+              <div class="ui-grid-col-6">
+                <p-message severity="error" text="Username is required"
+                           *ngIf="!loginForm.controls['username'].valid&&loginForm.controls['username'].dirty"></p-message>
+              </div>
+            </div>
+          </div>
+          <div class="group ui-grid-row">
+            <div class="ui-grid-col-4" style="padding: 20px;">
+              <label class="label">Verification Code</label></div>
+            <div class="ui-grid-col-6">
+              <input pInputText class="input" type="text" formControlName="code" placeholder="Required"/></div>
+            <div class="ui-grid-col-6">
+              <p-message severity="error" text="Verification Code is required"
+                         *ngIf="!loginForm.controls['code'].valid&&loginForm.controls['code'].dirty"></p-message>
+            </div>
+          </div>
+          <div class="group ui-grid-row">
+            <button pButton type="submit" class="button" label="Submit" [disabled]="!loginForm.valid">Confirm</button>
+          </div>
+      </form>
+          <div class="hr"></div>
+        <div class="foot-lnk">
+          <button pButton (click)="resendCode(loginForm.value)" class="button" [disabled]="!(loginForm.controls['username'].valid&&loginForm.controls['username'].dirty)">Resend Code</button>
+          <br>
+          <p-message severity="error" text="{{error}}" *ngIf="error"></p-message>
+        </div>
+
+    </div>
+  </div>
+</div>
